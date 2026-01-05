@@ -50,8 +50,21 @@ export default function Testimonials() {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 bg-gradient-to-br from-pink-50 via-yellow-50 to-blue-50 relative overflow-hidden">
+      {/* Playful Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-16 left-12 w-16 h-16 bg-pink-200 rounded-full opacity-25 animate-bounce"></div>
+        <div className="absolute bottom-20 right-16 w-20 h-20 bg-yellow-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/3 right-1/4 w-12 h-12 bg-blue-200 rounded-full opacity-30 animate-bounce" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-1/4 left-1/4 w-14 h-14 bg-green-200 rounded-full opacity-25 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+        
+        {/* Floating Hearts and Stars */}
+        <div className="absolute top-24 right-32 text-2xl text-pink-300 animate-pulse">💖</div>
+        <div className="absolute bottom-32 left-20 text-xl text-yellow-300 animate-bounce" style={{animationDelay: '1.5s'}}>⭐</div>
+        <div className="absolute top-1/2 left-16 text-lg text-blue-300 animate-pulse" style={{animationDelay: '2.5s'}}>🌟</div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
@@ -75,14 +88,26 @@ export default function Testimonials() {
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
-              <CardContent className="p-6 space-y-4">
+            <Card key={index} className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300 bg-white/90 backdrop-blur-sm transform hover:-translate-y-2 relative overflow-hidden">
+              {/* Decorative Elements */}
+              <div className="absolute -top-2 -right-2 text-3xl animate-bounce" style={{animationDelay: `${index * 0.3}s`}}>
+                {index % 4 === 0 ? '🌟' : index % 4 === 1 ? '💖' : index % 4 === 2 ? '🎈' : '🦋'}
+              </div>
+              <div className="absolute top-2 left-2 opacity-20">
+                <div className="flex space-x-1">
+                  <span className="text-sm animate-pulse" style={{animationDelay: '0s'}}>👶</span>
+                  <span className="text-sm animate-pulse" style={{animationDelay: '0.5s'}}>📚</span>
+                  <span className="text-sm animate-pulse" style={{animationDelay: '1s'}}>🎨</span>
+                </div>
+              </div>
+              
+              <CardContent className="p-6 space-y-4 relative z-10">
                 {/* Quote Icon */}
                 <div className="flex justify-between items-start">
-                  <Quote className="w-8 h-8 text-blue-500 opacity-50" />
+                  <Quote className="w-8 h-8 text-pink-500 opacity-60" />
                   <div className="flex space-x-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400 animate-pulse" style={{animationDelay: `${i * 0.1}s`}} />
                     ))}
                   </div>
                 </div>

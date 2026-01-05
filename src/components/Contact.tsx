@@ -69,8 +69,21 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-yellow-50 relative overflow-hidden">
+      {/* Playful Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 right-20 w-24 h-24 bg-purple-200 rounded-full opacity-20 animate-bounce"></div>
+        <div className="absolute bottom-24 left-16 w-20 h-20 bg-pink-200 rounded-full opacity-25 animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-yellow-200 rounded-full opacity-30 animate-bounce" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-1/3 right-1/4 w-18 h-18 bg-blue-200 rounded-full opacity-25 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+        
+        {/* Contact-themed floating elements */}
+        <div className="absolute top-32 left-24 text-2xl text-purple-300 animate-bounce" style={{animationDelay: '1s'}}>📞</div>
+        <div className="absolute bottom-40 right-32 text-xl text-pink-300 animate-pulse" style={{animationDelay: '2s'}}>✉️</div>
+        <div className="absolute top-2/3 right-16 text-lg text-yellow-300 animate-bounce" style={{animationDelay: '0.5s'}}>🏫</div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">

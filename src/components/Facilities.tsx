@@ -23,37 +23,55 @@ export default function Facilities() {
       icon: Home,
       title: "Spacious Classrooms",
       description: "Bright, airy classrooms designed according to Montessori principles with child-sized furniture and organized learning areas.",
-      features: ["Natural lighting", "Child-sized furniture", "Organized learning areas", "Safe materials"]
+      features: ["Natural lighting", "Child-sized furniture", "Organized learning areas", "Safe materials"],
+      emoji: "🏫",
+      color: "from-blue-400 to-cyan-400",
+      bgEmojis: ["📚", "✏️", "🎨", "🧩"]
     },
     {
       icon: TreePine,
       title: "Outdoor Play Area",
       description: "Secure outdoor space with age-appropriate play equipment, garden area, and nature exploration zones.",
-      features: ["Safe play equipment", "Garden area", "Nature exploration", "Shaded areas"]
+      features: ["Safe play equipment", "Garden area", "Nature exploration", "Shaded areas"],
+      emoji: "🌳",
+      color: "from-green-400 to-emerald-400",
+      bgEmojis: ["🌈", "🌻", "🦋", "⚽"]
     },
     {
       icon: BookOpen,
       title: "Library Corner",
       description: "Cozy reading nook with age-appropriate books in multiple languages to foster love for reading.",
-      features: ["Multilingual books", "Comfortable seating", "Story time area", "Interactive displays"]
+      features: ["Multilingual books", "Comfortable seating", "Story time area", "Interactive displays"],
+      emoji: "📚",
+      color: "from-purple-400 to-indigo-400",
+      bgEmojis: ["📖", "📜", "🔍", "✨"]
     },
     {
       icon: Utensils,
       title: "Nutrition Center",
       description: "Clean, hygienic kitchen facility providing healthy, nutritious meals and snacks for children.",
-      features: ["Healthy meals", "Hygienic preparation", "Dietary accommodations", "Fresh ingredients"]
+      features: ["Healthy meals", "Hygienic preparation", "Dietary accommodations", "Fresh ingredients"],
+      emoji: "🍎",
+      color: "from-orange-400 to-red-400",
+      bgEmojis: ["🥕", "🍌", "🥛", "🍼"]
     },
     {
       icon: Shield,
       title: "Safety & Security",
       description: "Comprehensive safety measures including CCTV monitoring, secure entry systems, and trained staff.",
-      features: ["CCTV monitoring", "Secure entry", "First aid trained staff", "Emergency protocols"]
+      features: ["CCTV monitoring", "Secure entry", "First aid trained staff", "Emergency protocols"],
+      emoji: "🛡️",
+      color: "from-red-400 to-pink-400",
+      bgEmojis: ["📹", "🔐", "🏥", "✅"]
     },
     {
       icon: Heart,
       title: "Health & Wellness",
       description: "Regular health check-ups, hygiene maintenance, and wellness programs for holistic child development.",
-      features: ["Health monitoring", "Hygiene protocols", "Wellness activities", "Medical support"]
+      features: ["Health monitoring", "Hygiene protocols", "Wellness activities", "Medical support"],
+      emoji: "❤️",
+      color: "from-pink-400 to-rose-400",
+      bgEmojis: ["🩺", "🏃", "🧘", "🚀"]
     }
   ]
 
@@ -81,7 +99,14 @@ export default function Facilities() {
   ]
 
   return (
-    <section id="facilities" className="py-20 bg-white">
+    <section id="facilities" className="py-20 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 relative overflow-hidden">
+      {/* Playful Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-16 w-20 h-20 bg-yellow-200 rounded-full opacity-20 animate-bounce"></div>
+        <div className="absolute bottom-24 right-20 w-24 h-24 bg-pink-200 rounded-full opacity-25 animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-blue-200 rounded-full opacity-30 animate-bounce" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-1/3 left-1/3 w-18 h-18 bg-green-200 rounded-full opacity-25 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -97,9 +122,22 @@ export default function Facilities() {
         {/* Main Facilities Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {facilities.map((facility, index) => (
-            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-              <CardContent className="p-6 space-y-4">
-                <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-green-500 flex items-center justify-center">
+            <Card key={index} className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white/90 backdrop-blur-sm relative overflow-hidden">
+              {/* Background Emojis */}
+              <div className="absolute top-2 right-2 flex space-x-1 opacity-20">
+                {facility.bgEmojis.map((emoji, idx) => (
+                  <span key={idx} className="text-sm animate-pulse" style={{animationDelay: `${idx * 0.3}s`}}>
+                    {emoji}
+                  </span>
+                ))}
+              </div>
+              
+              <CardContent className="p-6 space-y-4 relative z-10">
+                <div className="absolute -top-3 -right-3 text-3xl animate-bounce" style={{animationDelay: `${index * 0.2}s`}}>
+                  {facility.emoji}
+                </div>
+                
+                <div className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${facility.color} flex items-center justify-center shadow-lg animate-pulse`}>
                   <facility.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 text-center">{facility.title}</h3>
@@ -109,7 +147,7 @@ export default function Facilities() {
                   <ul className="space-y-1">
                     {facility.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center text-xs text-gray-600">
-                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2 flex-shrink-0"></div>
+                        <div className={`w-1.5 h-1.5 bg-gradient-to-r ${facility.color} rounded-full mr-2 flex-shrink-0 animate-pulse`} style={{animationDelay: `${idx * 0.1}s`}}></div>
                         {feature}
                       </li>
                     ))}
@@ -186,21 +224,34 @@ export default function Facilities() {
           </div>
 
           <div className="relative">
-            <div className="aspect-square rounded-2xl bg-gradient-to-br from-blue-100 to-green-100 p-8">
-              <div className="w-full h-full rounded-xl bg-white/50 backdrop-blur-sm flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-green-500 flex items-center justify-center">
+            <div className="aspect-square rounded-2xl bg-gradient-to-br from-pink-100 via-yellow-100 to-blue-100 p-8 shadow-2xl">
+              <div className="w-full h-full rounded-xl bg-white/40 backdrop-blur-sm flex items-center justify-center relative overflow-hidden">
+                {/* Campus Background Elements */}
+                <div className="absolute inset-0 opacity-15">
+                  <div className="absolute top-4 left-4 w-8 h-8 bg-green-400 rounded-full animate-bounce"></div>
+                  <div className="absolute top-8 right-6 w-6 h-6 bg-yellow-400 transform rotate-45 animate-pulse" style={{animationDelay: '1s'}}></div>
+                  <div className="absolute bottom-8 left-6 w-4 h-8 bg-blue-400 rounded-sm animate-bounce" style={{animationDelay: '2s'}}></div>
+                  <div className="absolute bottom-4 right-4 w-6 h-6 bg-pink-400 rounded-full animate-pulse"></div>
+                  <div className="absolute top-1/2 left-1/2 w-10 h-3 bg-purple-400 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-bounce" style={{animationDelay: '0.5s'}}></div>
+                </div>
+                
+                <div className="text-center space-y-4 relative z-10">
+                  <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 flex items-center justify-center shadow-lg animate-pulse">
                     <Home className="w-12 h-12 text-white" />
                   </div>
                   <div className="space-y-2">
                     <h4 className="text-xl font-bold text-gray-800">Our Campus</h4>
-                    <p className="text-gray-600 text-sm">A home away from home</p>
-                    <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
-                      <span>Safe</span>
-                      <span>•</span>
-                      <span>Clean</span>
-                      <span>•</span>
-                      <span>Nurturing</span>
+                    <p className="text-gray-600 text-sm font-medium">A home away from home</p>
+                    <div className="flex items-center justify-center space-x-2 text-xs text-gray-500">
+                      <span className="bg-green-100 px-2 py-1 rounded-full">Safe</span>
+                      <span className="bg-blue-100 px-2 py-1 rounded-full">Clean</span>
+                      <span className="bg-pink-100 px-2 py-1 rounded-full">Nurturing</span>
+                    </div>
+                    <div className="flex justify-center space-x-1 mt-3">
+                      <span className="text-lg animate-bounce" style={{animationDelay: '0s'}}>🏫</span>
+                      <span className="text-lg animate-bounce" style={{animationDelay: '0.2s'}}>🌳</span>
+                      <span className="text-lg animate-bounce" style={{animationDelay: '0.4s'}}>🎨</span>
+                      <span className="text-lg animate-bounce" style={{animationDelay: '0.6s'}}>📚</span>
                     </div>
                   </div>
                 </div>

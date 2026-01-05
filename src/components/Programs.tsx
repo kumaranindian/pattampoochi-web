@@ -13,6 +13,8 @@ export default function Programs() {
       duration: "Half Day / Full Day",
       color: "from-pink-500 to-rose-500",
       bgColor: "from-pink-50 to-rose-50",
+      emoji: "🍼",
+      playEmojis: ["🧸", "🎈", "🌈", "⭐"],
       features: [
         "Toilet training support",
         "Language development",
@@ -29,6 +31,8 @@ export default function Programs() {
       duration: "Full Day",
       color: "from-blue-500 to-cyan-500",
       bgColor: "from-blue-50 to-cyan-50",
+      emoji: "👦",
+      playEmojis: ["📚", "🎨", "🧩", "🔢"],
       features: [
         "Mixed age classroom",
         "Practical life skills",
@@ -45,6 +49,8 @@ export default function Programs() {
       duration: "Full Day",
       color: "from-green-500 to-emerald-500",
       bgColor: "from-green-50 to-emerald-50",
+      emoji: "🎓",
+      playEmojis: ["📖", "✏️", "🌟", "🏆"],
       features: [
         "School readiness",
         "Advanced academics",
@@ -85,7 +91,14 @@ export default function Programs() {
   ]
 
   return (
-    <section id="programs" className="py-20 bg-gray-50">
+    <section id="programs" className="py-20 bg-gradient-to-br from-yellow-50 via-green-50 to-blue-50 relative overflow-hidden">
+      {/* Playful Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-16 right-16 w-24 h-24 bg-yellow-200 rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 left-20 w-20 h-20 bg-green-200 rounded-full opacity-25 animate-bounce" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/3 left-1/3 w-16 h-16 bg-blue-200 rounded-full opacity-30 animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-1/3 right-1/4 w-18 h-18 bg-pink-200 rounded-full opacity-25 animate-bounce" style={{animationDelay: '0.5s'}}></div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -101,18 +114,31 @@ export default function Programs() {
         {/* Programs Grid */}
         <div className="grid lg:grid-cols-3 gap-8 mb-20">
           {programs.map((program, index) => (
-            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-              <div className={`h-2 bg-gradient-to-r ${program.color}`}></div>
-              <CardContent className="p-8">
+            <Card key={index} className="border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden transform hover:-translate-y-3 bg-white/90 backdrop-blur-sm">
+              <div className={`h-3 bg-gradient-to-r ${program.color} relative`}>
+                <div className="absolute -top-1 right-4 text-2xl animate-bounce" style={{animationDelay: `${index * 0.3}s`}}>
+                  {program.emoji}
+                </div>
+              </div>
+              <CardContent className="p-8 relative">
+                {/* Floating Play Elements */}
+                <div className="absolute top-4 right-4 flex space-x-1">
+                  {program.playEmojis.map((emoji, idx) => (
+                    <span key={idx} className="text-lg animate-bounce opacity-60" style={{animationDelay: `${idx * 0.2}s`}}>
+                      {emoji}
+                    </span>
+                  ))}
+                </div>
+                
                 <div className="space-y-6">
                   {/* Header */}
                   <div className="text-center space-y-4">
-                    <div className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${program.color} flex items-center justify-center`}>
+                    <div className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${program.color} flex items-center justify-center shadow-lg animate-pulse`}>
                       <program.icon className="w-8 h-8 text-white" />
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold text-gray-900">{program.title}</h3>
-                      <p className="text-blue-600 font-semibold">{program.ageRange}</p>
+                      <p className="text-blue-600 font-semibold text-lg">{program.ageRange}</p>
                       <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 mt-2">
                         <Clock className="w-4 h-4" />
                         <span>{program.duration}</span>

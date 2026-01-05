@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pattaampoochi-montessori.vercel.app'),
   title: "Pattaampoochi Montessori Pre-School | Best Montessori School in Chennai Ponmar",
   description: "Authentic Montessori education for children aged 18 months to 6 years in Chennai. Rated 5.0/5 with 50+ reviews. Nurturing independence, creativity & lifelong learning in Ponmar, Thalambur.",
   keywords: "Montessori school Chennai, preschool Ponmar, daycare Thalambur, kindergarten Chennai, early childhood education, Montessori method, child development, independent learning",
